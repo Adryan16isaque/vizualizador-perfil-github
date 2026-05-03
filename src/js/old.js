@@ -34,6 +34,18 @@ btnSearch.addEventListener('click', async () => {
                         <p>${data.bio || 'Nao possui biografia disponivel.😭'}</p>
                     </div>
              </div>
+             <div class="profile-counters">
+                <div class="followers">
+                        <h4>👥 Seguidores<h4>
+                        <span class="">${data.followers}</span>
+                    </div>
+                    <div class="following">
+                        <h4>👥 Seguindo<h4>
+                        <span class="">${data.following}</span>
+                    </div>
+             </div>
+
+             
             `
 
         } catch (error) {
