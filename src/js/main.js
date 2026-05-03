@@ -3,7 +3,7 @@ import { getElements, showLoading, renderProfile, clearResults, showError } from
 
 const { btnSearch, inputName, results } = getElements();
 
-btnSearch.addEventListener('click', async () => {
+const searchProfile = async () => {
     const nameValue = inputName.value.trim();
 
     if (!nameValue) {
@@ -15,10 +15,17 @@ btnSearch.addEventListener('click', async () => {
     try {
         const userData = await fetchUserProfile(nameValue);
         const reposData = await fetchUserRepos(nameValue);
-        console.log(reposData);
-        
+
         renderProfile(userData, reposData, results);
     } catch (error) {
         showError('Aconteceu um erro ao buscar o perfil do usuario. Tente novamente mais tarde', results);
+    }
+};
+
+btnSearch.addEventListener('click', searchProfile);
+
+inputName.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        searchProfile();
     }
 });
